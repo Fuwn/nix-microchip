@@ -11,6 +11,8 @@ pkgs : rec {
    #FIXME: Rework this to pass an xc16 version as a parameter to mplab-x package rather than abusing the default..
    # xc16 = xc16_2_10; #i.e. default to latest version we've bothered to package
    xc16 = xc16_1_61; #i.e. default to the version we're using for current production builds
+   xc32_4_40 = pkgs.callPackage ./xc32/4.40.nix { };
+   xc32 = xc32_4_40; #i.e. default to the version we're using for current production builds
    mplab-x-unwrapped = pkgs.callPackage ./mplab-x-unwrapped { };
-   mplab-x = pkgs.callPackage ./mplab-x { inherit mplab-x-unwrapped xc16; };
+   mplab-x = pkgs.callPackage ./mplab-x { inherit mplab-x-unwrapped xc16 xc32; };
 }
